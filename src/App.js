@@ -56,7 +56,7 @@ function App() {
     getWeatherData();
   })
 
-  // useEffect(() => {
+  // useEffect(() => {0
   //   getWeatherData();
   // },[city])
 
@@ -103,7 +103,7 @@ function App() {
 
    { isLoading && 
      
-      <p style={{textAlign:'center'}}>Loading Data...</p> 
+      <p style={{textAlign:'center'}}>Loading data...</p> 
      }
    </>
   );
