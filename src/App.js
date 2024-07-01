@@ -7,6 +7,7 @@ import axios from 'axios';
 function App() {
 
   const [city, setCity] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [weatherdata , setWeatherData] = useState([]);
 
   // const weatherdata = [
@@ -23,6 +24,7 @@ function App() {
     // console.log('url',url)
 
     axios.get(url).then((response) => {
+      setIsLoading(true);
       // console.log(response.data);
       // console.log("Temperature",response.data.current.temp_c);
       // console.log("Humidity",response.data.current.humidity);
@@ -35,6 +37,7 @@ function App() {
         {name: "Condition", value: response.data.current.condition.text},
         {name: "Wind Speed", value: response.data.current.wind_kph}
       ])
+      setIsLoading(false);
     })
     .catch((err) => console.log(err));
 
@@ -53,9 +56,12 @@ function App() {
      
     </div>
      <div className='weather-cards'>
-     { weatherdata && weatherdata.map((data) => (
+     {!isLoading && weatherdata && weatherdata.map((data) => (
        <Card key={data.name} name={data.name}  value={data.value}/>
      ))
+     }
+     {isLoading && 
+     <div>Loading Data...</div>
      }
    </div>
    </>
