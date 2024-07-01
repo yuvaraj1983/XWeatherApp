@@ -8,6 +8,7 @@ function App() {
 
   const [city, setCity] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isdata, setIsData] = useState(false);
   const [weatherdata , setWeatherData] = useState([]);
 
   // const weatherdata = [
@@ -19,25 +20,27 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setIsLoading(true);
     const apikey = 'f291805bb1c34eccb3d121044242703'
     const url=`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`
     // console.log('url',url)
 
     axios.get(url).then((response) => {
-      setIsLoading(true);
+      
       // console.log(response.data);
       // console.log("Temperature",response.data.current.temp_c);
       // console.log("Humidity",response.data.current.humidity);
       // console.log("Condition",response.data.current.condition.text);
       // console.log("Wind Speed",response.data.current.wind_kph);
 
-      setWeatherData( [
+      setWeatherData([
         {name: "Temperature", value: response.data.current.temp_c},
         {name: "Humidity", value: response.data.current.humidity},
         {name: "Condition", value: response.data.current.condition.text},
         {name: "Wind Speed", value: response.data.current.wind_kph}
       ])
       setIsLoading(false);
+      setIsData(true);
     })
     .catch((err) => {
       alert('Failed to fetch weather data');
@@ -58,7 +61,7 @@ function App() {
       </form>
      
     </div>
-    { !isLoading &&
+    { isdata &&
         <div className='weather-cards'>
      {  weatherdata && weatherdata.map((data) => (
         <Card key={data.name} name={data.name}  value={data.value}/>
