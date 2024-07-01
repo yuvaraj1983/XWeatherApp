@@ -74,8 +74,8 @@ function App() {
      
  
    { isLoading && 
-     <div>
-      <p>Loading Data...</p> </div>
+     
+      <p style={{textAlign:'center'}}>Loading Data...</p> 
      }
    </>
   );
