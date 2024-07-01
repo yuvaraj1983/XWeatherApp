@@ -58,15 +58,21 @@ function App() {
       </form>
      
     </div>
-     <div className='weather-cards'>
-     {!isLoading && weatherdata && weatherdata.map((data) => (
-       <Card key={data.name} name={data.name}  value={data.value}/>
-     ))
+    { !isLoading &&
+        <div className='weather-cards'>
+     {  weatherdata && weatherdata.map((data) => (
+        <Card key={data.name} name={data.name}  value={data.value}/>
+      ))
+    }
+      </div>
+    }
+    
+     
+ 
+   { isLoading && 
+     <div>
+      <p>Loading Data...</p> </div>
      }
-     {isLoading && 
-     <div>Loading Data...</div>
-     }
-   </div>
    </>
   );
 }
