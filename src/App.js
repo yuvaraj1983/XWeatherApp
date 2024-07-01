@@ -39,7 +39,10 @@ function App() {
       ])
       setIsLoading(false);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      alert('Failed to fetch weather data');
+    //  console.log(err)
+    } );
 
   }
   return (
