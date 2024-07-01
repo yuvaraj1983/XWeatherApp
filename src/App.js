@@ -7,22 +7,34 @@ import axios from 'axios';
 function App() {
 
   const [city, setCity] = useState('');
+  const [weatherdata , setWeatherData] = useState([]);
 
-  const weatherdata = [
-    {name: "Temperature", value: "27.4 C"},
-    {name: "Humidity", value: "27.4 C"},
-    {name: "Condition", value: "Sunny"},
-    {name: "Wind Speed", value: "13.7 kph"}
-  ]
+  // const weatherdata = [
+  //   {name: "Temperature", value: "27.4 C"},
+  //   {name: "Humidity", value: "27.4 C"},
+  //   {name: "Condition", value: "Sunny"},
+  //   {name: "Wind Speed", value: "13.7 kph"}
+  // ]
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const apikey = 'f291805bb1c34eccb3d121044242703'
-    const url=`http://api.weatherapi.com/v1?key=${apikey}&q=${city}`
-    console.log('url',url)
+    const url=`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`
+    // console.log('url',url)
 
     axios.get(url).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
+      // console.log("Temperature",response.data.current.temp_c);
+      // console.log("Humidity",response.data.current.humidity);
+      // console.log("Condition",response.data.current.condition.text);
+      // console.log("Wind Speed",response.data.current.wind_kph);
+
+      setWeatherData( [
+        {name: "Temperature", value: response.data.current.temp_c},
+        {name: "Humidity", value: response.data.current.humidity},
+        {name: "Condition", value: response.data.current.condition.text},
+        {name: "Wind Speed", value: response.data.current.wind_kph}
+      ])
     })
     .catch((err) => console.log(err));
 
