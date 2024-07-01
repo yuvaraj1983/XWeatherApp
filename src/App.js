@@ -21,6 +21,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault()
     setIsLoading(true);
+    setIsData(true);
     const apikey = 'f291805bb1c34eccb3d121044242703'
     const url=`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`
     // console.log('url',url)
@@ -40,7 +41,7 @@ function App() {
         {name: "Wind Speed", value: response.data.current.wind_kph}
       ])
       setIsLoading(false);
-      setIsData(true);
+     
     })
     .catch((err) => {
       alert('Failed to fetch weather data');
