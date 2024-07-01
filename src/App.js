@@ -3,7 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Card from './Components/Card/Card';
 import axios from 'axios';
-
+import  './Components/Card/Card.css';
 function App() {
 
   const [city, setCity] = useState('');
