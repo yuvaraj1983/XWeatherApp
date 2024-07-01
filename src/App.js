@@ -51,12 +51,14 @@ function App() {
   // }
 
   const handleSubmit = ((e) => {
-    setCity(e.target.value);
+    e.preventDefault();
+    //setCity(e.target.value);
+    getWeatherData();
   })
 
-  useEffect(() => {
-    getWeatherData();
-  },[city])
+  // useEffect(() => {
+  //   getWeatherData();
+  // },[city])
 
   const getWeatherData = () => {
     if(city) {
