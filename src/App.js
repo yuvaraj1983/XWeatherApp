@@ -9,7 +9,7 @@ function App() {
   const [city, setCity] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isdata, setIsData] = useState(false);
-  const [weatherdata , setWeatherData] = useState([]);
+  const [weatherdata , setWeatherData] = useState({});
   const [data, setData] = useState([]);
 
   // const datatemp = [
@@ -71,8 +71,9 @@ function App() {
 
       try {
         const response = await axios.get(url);
-        const data = await response.data;
-        setWeatherData(data);
+        const datares = await response.data;
+        setWeatherData(datares);
+        console.log("datares", datares)
       //      setWeatherData([
       //   {name: "Temperature", value: data.current.temp_c},
       //   {name: "Humidity", value: data.current.humidity},
@@ -80,13 +81,14 @@ function App() {
       //   {name: "Wind Speed", value: data.current.wind_kph}
       // ])
         const datatemp = [
-        {name: "Temperature", value: data.current.temp_c},
-        {name: "Humidity", value: data.current.humidity},
-        {name: "Condition", value: data.current.condition.text},
-        {name: "Wind Speed", value: data.current.wind_kph}
+        {name: "Temperature", value: datares.current.temp_c},
+        {name: "Humidity", value: datares.current.humidity},
+        {name: "Condition", value: datares.current.condition.text},
+        {name: "Wind Speed", value: datares.current.wind_kph}
           ];
           setData(datatemp);
-       
+       console.log("datatemp", datatemp)
+       console.log("data", data)
         setIsData(true);
         setIsLoading(false);
       } catch(err) {
@@ -121,7 +123,7 @@ function App() {
     { isdata &&
         <div className='weather-cards'> 
         {  data &&  data.map((dt) => (
-            <Card  name={dt.name} value={dt.value}/>
+            <Card  key={dt.name} name={dt.name} value={dt.value}/>
           ))
         }
           {/* <Card  name="Temperature" value={weatherdata.current.temp_c}/>
