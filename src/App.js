@@ -120,8 +120,8 @@ function App() {
     </div>
     { isdata &&
         <div className='weather-cards'> 
-        {  weatherdata &&  weatherdata.map((data) => (
-            <Card  name={data.name} value={data.value}/>
+        {  data &&  data.map((dt) => (
+            <Card  name={dt.name} value={dt.value}/>
           ))
         }
           {/* <Card  name="Temperature" value={weatherdata.current.temp_c}/>
