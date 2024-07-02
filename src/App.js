@@ -10,8 +10,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isdata, setIsData] = useState(false);
   const [weatherdata , setWeatherData] = useState([]);
+  const [data, setData] = useState([]);
 
-  // const weatherdata = [
+  // const datatemp = [
   //   {name: "Temperature", value: "27.4 C"},
   //   {name: "Humidity", value: "27.4 C"},
   //   {name: "Condition", value: "Sunny"},
@@ -71,13 +72,20 @@ function App() {
       try {
         const response = await axios.get(url);
         const data = await response.data;
-       // setWeatherData(data)
-           setWeatherData([
+        setWeatherData(data);
+      //      setWeatherData([
+      //   {name: "Temperature", value: data.current.temp_c},
+      //   {name: "Humidity", value: data.current.humidity},
+      //   {name: "Condition", value: data.current.condition.text},
+      //   {name: "Wind Speed", value: data.current.wind_kph}
+      // ])
+        const datatemp = [
         {name: "Temperature", value: data.current.temp_c},
         {name: "Humidity", value: data.current.humidity},
         {name: "Condition", value: data.current.condition.text},
         {name: "Wind Speed", value: data.current.wind_kph}
-      ])
+          ];
+          setData(datatemp);
        
         setIsData(true);
         setIsLoading(false);
