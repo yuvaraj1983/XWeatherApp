@@ -21,7 +21,7 @@ function App() {
   const getWeatherData = async () => {
     if (city) {
       const apikey = 'f291805bb1c34eccb3d121044242703';
-      const url = `http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`;
+      const url = `https://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`;
 
       setIsLoading(true);
       setIsData(false);
