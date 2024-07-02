@@ -60,22 +60,33 @@ function App() {
   //   getWeatherData();
   // },[city])
 
-  const getWeatherData = () => {
+  const getWeatherData = async () => {
     if(city) {
       const apikey = 'f291805bb1c34eccb3d121044242703'
       const url=`http://api.weatherapi.com/v1/current.json?key=${apikey}&q=${city}`
       // console.log('url',url)
       setIsLoading(true);
       setIsData(false);
-      axios.get(url).then((response) => {
-        setWeatherData(response.data);
+
+      try {
+        const response = await axios.get(url);
+        const data = await response.data;
+        setWeatherData(data)
         setIsData(true);
         setIsLoading(false);
-       
-      })
-      .catch((err) => {
+      } catch(err) {
         alert('Failed to fetch weather data');
-      } );
+      }
+     
+      // axios.get(url).then((response) => {
+      //   setWeatherData(response.data);
+      //   setIsData(true);
+      //   setIsLoading(false);
+       
+      // })
+      // .catch((err) => {
+      //   alert('Failed to fetch weather data');
+      // } );
     }
     
   }
