@@ -120,18 +120,23 @@ function App() {
       </form>
      
     </div>
-    { isdata &&
+    {/* { isdata &&
         <div className='weather-cards'> 
         {  data &&  data.map((dt) => (
             <Card  key={dt.name} name={dt.name} value={dt.value}/>
           ))
         }
-          {/* <Card  name="Temperature" value={weatherdata.current.temp_c}/>
-          <Card  name="Humidity" value={weatherdata.current.humidity}/>
-          <Card  name="Condition" value={weatherdata.current.condition.text}/>
-          <Card  name="Wind Speed" value={weatherdata.current.wind_kph}/> */}
+        
       </div>
-    }
+    } */}
+
+{isdata &&
+  <div className='weather-cards'> 
+    {data.map((item, index) => (
+      <Card key={index} name={item.name} value={item.value} />
+    ))}
+  </div>
+}
 
    { isLoading && 
      
