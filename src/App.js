@@ -27,7 +27,9 @@ function App() {
       setIsData(false);
 
       try {
+        console.log("url", url)
         const response = await axios.get(url);
+        console.log("response", response);
         const weatherData = response.data;
 
         const formattedData = [
